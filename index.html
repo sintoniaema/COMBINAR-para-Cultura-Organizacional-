@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMBINAR | Modelo de Cultura Organizacional para Manufactura</title>
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-orange: #f97316;
+            --accent-green: #22c55e;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --micelio: #8b5cf6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+        
+        .logo span {
+            color: var(--accent-orange);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        .contact-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--secondary-blue);
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--secondary-blue);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card.micelio {
+            border-top-color: var(--micelio);
+        }
+        
+        .card.orange {
+            border-top-color: var(--accent-orange);
+        }
+        
+        .card.green {
+            border-top-color: var(--accent-green);
+        }
+        
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Metodología */
+        .methodology {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        
+        .step h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Rutas */
+        .rutas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .ruta-card {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ruta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .ruta-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .ruta-card .metaphor {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .ruta-card ul {
+            list-style: none;
+            position: relative;
+        }
+        
+        .ruta-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .ruta-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Diagnóstico */
+        .diagnostico {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .dimension-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .dimension {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-bottom: 4px solid var(--secondary-blue);
+        }
+        
+        .dimension-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .dimension h4 {
+            font-size: 0.9rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .dimension p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        /* Plan 90 días */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--secondary-blue);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-orange);
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            top: 20px;
+            box-shadow: 0 0 0 4px var(--secondary-blue);
+        }
+        
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -14px;
+        }
+        
+        .right::after {
+            left: -14px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .phase-badge {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-orange);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .rutas-grid {
+                grid-template-columns: 1fr;
+            }
+            .dimension-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 18px;
+            }
+            .right {
+                left: 0%;
+            }
+            .left {
+                text-align: left;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="header-content">
+            <div>
+                <div class="logo">COMBI<span>NAR</span></div>
+                <div class="tagline">Aprende • Crece • Transforma</div>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.9;">
+                    Modelo de Cultura Organizacional para Manufactura
+                </div>
+            </div>
+            <div class="contact-badge">
+                <strong>Marco Antonio Gálvez Estrada</strong><br>
+                Consultor en Desarrollo Humano<br>
+                📧 sintonia.ema.2026@gmail.com<br>
+                📱 55 2268 5235
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="container">
+        <ul>
+            <li><a href="#que-es">¿Qué es?</a></li>
+            <li><a href="#arquitectura">Arquitectura</a></li>
+            <li><a href="#metodologia">Metodología</a></li>
+            <li><a href="#rutas">3 Rutas</a></li>
+            <li><a href="#diagnostico">Diagnóstico</a></li>
+            <li><a href="#implementacion">Plan 90 días</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="que-es">
+    <div class="container">
+        <h2 class="section-title">¿Qué es COMBINAR?</h2>
+        <p class="section-subtitle">
+            Una metodología de desarrollo humano aplicada al contexto manufacturero que integra 
+            <strong>Propósito</strong> (Espíritu), <strong>Procesos</strong> (Materia) y <strong>Personas</strong> (Alma) 
+            mediante la conciencia, la asertividad y el servicio.
+        </p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">🏭</div>
+                <h3>No estamos rotos</h3>
+                <p>No partimos de la idea de que la organización está "rota" y necesita ser "arreglada". Partimos de esta posibilidad: <strong>Quizá no necesitamos convertirnos en una empresa diferente, sino volver a escuchar quiénes somos como colectivo.</strong></p>
+            </div>
+            
+            <div class="card micelio">
+                <div class="card-icon">🕸️</div>
+                <h3>La metáfora del Micelio</h3>
+                <p>En manufactura, cuando hay interferencia entre turnos, no se escucha con claridad. Cuando aparece ruido, confusión o contradicción entre áreas, los equipos se desorientan. Pero eso no significa que estén perdidos; significa que están <strong>fuera de sintonía</strong>.</p>
+            </div>
+            
+            <div class="card orange">
+                <div class="card-icon">🎯</div>
+                <h3>Combinar no es cambiar</h3>
+                <p>Sintonizar no es cambiar de estación. Es encontrar la frecuencia original del equipo. Es combinar la eficiencia de los procesos con la dignidad de las personas.</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; text-align: center; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Frase Rectora</h3>
+            <p style="font-size: 1.3rem; font-style: italic; color: var(--text-light);">
+                "No buscamos convertirnos en una organización diferente. Buscamos volver a escuchar quiénes somos."
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="arquitectura" style="background: white;">
+    <div class="container">
+        <h2 class="section-title">La Arquitectura del Sistema</h2>
+        <p class="section-subtitle">No somos tres cursos separados. Somos una sola metodología vivida desde cuatro capas integradas.</p>
+        
+        <div class="grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="card" style="text-align: center;">
+                <div class="card-icon">💡</div>
+                <h3>CAPA 1: SER</h3>
+                <p><strong>Propósito • Procesos • Personas</strong><br><br>La arquitectura profunda del ser humano en el trabajo. La integración de lo que hacemos, cómo lo hacemos y para qué lo hacemos.</p>
+            </div>
+            
+            <div class="card micelio" style="text-align: center;">
+                <div class="card-icon">🕸️</div>
+                <h3>CAPA 2: RELACIONAR</h3>
+                <p><strong>Pertenencia • Contribución • Cuidado</strong><br><br>El marco relacional que transforma la convivencia entre turnos y áreas.</p>
+            </div>
+            
+            <div class="card orange" style="text-align: center;">
+                <div class="card-icon">🔄</div>
+                <h3>CAPA 3: HACER</h3>
+                <p><strong>Asertividad • Trabajo en Equipo • Liderazgo</strong><br><br>Las tres competencias concretas de aplicación diaria.</p>
+            </div>
+            
+            <div class="card green" style="text-align: center;">
+                <div class="card-icon">📈</div>
+                <h3>CAPA 4: TRANSFORMAR</h3>
+                <p><strong>Persona → Equipo → Organización</strong><br><br>El alcance del cambio sistémico y sostenible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="metodologia">
+    <div class="container">
+        <h2 class="section-title">La Metodología: 3 Movimientos</h2>
+        <p class="section-subtitle">Comprender no es suficiente si la comprensión no se traduce en un gesto cotidiano. La metodología articula la transformación en tres movimientos dinámicos.</p>
+        
+        <div class="methodology">
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>SINTONIZAR</h4>
+                    <p><strong>Detenerse • Escuchar • Reconocer</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
+                        Pausa real frente al ruido organizacional. Observar sin juzgar ni intentar corregir de inmediato la experiencia interna y colectiva.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>INTEGRAR</h4>
+                    <p><strong>Comprender • Dialogar • Elegir</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
+                        Dar significado a lo escuchado, sentar a las tres voces (Propósito, Procesos, Personas) en la misma mesa y tomar decisiones conscientes.
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>ENCARNAR</h4>
+                    <p><strong>Actuar • Servir • Volver a sintonizar</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">
+                        Llevar la decisión a hábitos y gestos cotidianos en la línea de producción, compartir el aprendizaje y reconocer que la sintonía es una práctica constante.
+                    </p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: var(--bg-light); border-radius: 8px;">
+                <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">La Pregunta Central del Método</h4>
+                <p style="font-size: 1.2rem; font-style: italic;">"¿Qué estoy haciendo con aquello que hoy comprendo?"</p>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">(Esta interrogante evita que el desarrollo organizacional se vuelva una mera especulación intelectual)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="rutas" style="background: white;">
+    <div class="container">
+        <h2 class="section-title">Las 3 Rutas de Aplicación</h2>
+        <p class="section-subtitle">De la metodología única derivan tres rutas, cada una con su metáfora visual y aplicación específica en manufactura.</p>
+        
+        <div class="rutas-grid">
+            <!-- Ruta 1: Asertividad -->
+            <div class="ruta-card">
+                <h3>🎯 RUTA 01: ASERTIVIDAD EN SINTONÍA</h3>
+                <div class="metaphor">Metáfora: LA FRECUENCIA</div>
+                <p style="margin-bottom: 1rem; position: relative;">
+                    Comunicar sin ruido ni interferencia. Expresar ideas, necesidades y límites con claridad respetando la frecuencia del otro.
+                </p>
+                <ul>
+                    <li>Escucha activa entre turnos</li>
+                    <li>Expresión de ideas sin agresión ni sumisión</li>
+                    <li>Feedback constructivo en línea de producción</li>
+                    <li>Comunicación horizontal (micelio)</li>
+                </ul>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.9rem;">
+                    <strong>Pregunta guía:</strong> ¿Qué ocurre entre nosotros cuando dejamos de escucharnos?
+                </div>
+            </div>
+            
+            <!-- Ruta 2: Trabajo en Equipo -->
+            <div class="ruta-card" style="background: linear-gradient(135deg, var(--micelio), #7c3aed);">
+                <h3>🕸️ RUTA 02: TEJER EQUIPO</h3>
+                <div class="metaphor">Metáfora: EL MICELIO</div>
+                <p style="margin-bottom: 1rem; position: relative;">
+                    De individuos que trabajan juntos a una red que contribuye. Crear interdependencia saludable entre áreas y turnos.
+                </p>
+                <ul>
+                    <li>Nodos miceliales (embajadores de cultura)</li>
+                    <li>Economía del regalo (ayuda mutua)</li>
+                    <li>Mapeo de interdependencias</li>
+                    <li>Cerrar ciclos entre turnos (paso de testigo)</li>
+                </ul>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.9rem;">
+                    <strong>Pregunta guía:</strong> ¿Qué ocurre con el tejido cuando dejamos de contribuir?
+                </div>
+            </div>
+            
+            <!-- Ruta 3: Liderazgo -->
+            <div class="ruta-card" style="background: linear-gradient(135deg, var(--accent-green), #16a34a);">
+                <h3>🌱 RUTA 03: LIDERAR EN SINTONÍA</h3>
+                <div class="metaphor">Metáfora: LA RAÍZ</div>
+                <p style="margin-bottom: 1rem; position: relative;">
+                    De la cúspide al centro. Crecer hacia abajo para sostener hacia arriba. Liderazgo de servicio en ambientes de alta presión.
+                </p>
+                <ul>
+                    <li>Líderes que escuchan antes de dirigir</li>
+                    <li>Reversibilidad: saber seguir y saber ceder</li>
+                    <li>Sostener el tejido en tiempos de crisis</li>
+                    <li>Delegación como distribución ecológica</li>
+                </ul>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.9rem;">
+                    <strong>Pregunta guía:</strong> ¿Qué ocurre con la organización cuando dejamos de servir al tejido?
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="diagnostico">
+    <div class="container">
+        <h2 class="section-title">Radiografía de Combinación</h2>
+        <p class="section-subtitle">
+            La puerta de entrada al ecosistema no es un curso. Es un instrumento de autodiagnóstico y orientación formativa que mide 5 dimensiones transversales.
+        </p>
+        
+        <div class="diagnostico">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h3 style="color: var(--primary-blue);">Índice de Combinación Organizacional</h3>
+                <p style="color: var(--text-light);">Escala 1-10 por dimensión • Diagnóstico sistémico, nunca individual</p>
+            </div>
+            
+            <div class="dimension-grid">
+                <div class="dimension">
+                    <div class="dimension-icon">👂</div>
+                    <h4>ESCUCHA</h4>
+                    <p>¿Puedo detenerme y escuchar el ruido entre áreas?</p>
+                </div>
+                
+                <div class="dimension">
+                    <div class="dimension-icon">👁️</div>
+                    <h4>CONCIENCIA</h4>
+                    <p>¿Reconozco cómo mi trabajo afecta al turno siguiente?</p>
+                </div>
+                
+                <div class="dimension">
+                    <div class="dimension-icon">🤝</div>
+                    <h4>RELACIÓN</h4>
+                    <p>¿Cómo construyo mis vínculos interdepartamentales?</p>
+                </div>
+                
+                <div class="dimension">
+                    <div class="dimension-icon">🎁</div>
+                    <h4>CONTRIBUCIÓN</h4>
+                    <p>¿Qué aporto al sistema sin que me lo pidan?</p>
+                </div>
+                
+                <div class="dimension">
+                    <div class="dimension-icon">⚡</div>
+                    <h4>ACCIÓN</h4>
+                    <p>¿Convierto comprensión en conducta diaria?</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; background: var(--bg-light); padding: 2rem; border-radius: 8px; border-left: 4px solid var(--accent-orange);">
+                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">El resultado no dice:</h4>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-light);">
+                    ❌ "Tienes mala comunicación."
+                </p>
+                <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">El resultado dice:</h4>
+                <p style="font-size: 1.1rem; color: var(--text-dark);">
+                    ✅ "Tu principal área de desarrollo actual se encuentra en <strong>[dimensión]</strong>. Tu patrón relacional predominante es <strong>[El Ruido / El Eco / La Isla / El Habitante]</strong>."
+                </p>
+            </div>
+            
+            <div style="margin-top: 2rem; text-align: center;">
+                <p style="font-size: 0.9rem; color: var(--text-light);">
+                    <strong>Flujo completo:</strong> TEST → RADIOGRAFÍA → INTERPRETACIÓN → RUTA PERSONALIZADA → EXPERIENCIA FORMATIVA → PRÁCTICAS → SEGUIMIENTO → REEVALUACIÓN
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="implementacion" style="background: white;">
+    <div class="container">
+        <h2 class="section-title">Plan de Implementación: 90 Días</h2>
+        <p class="section-subtitle">De la teoría al piso de producción con métricas concretas.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="phase-badge">DÍAS 1-30</span>
+                    <h3>SINTONIZAR</h3>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>📊 Radiografía de Combinación (diagnóstico)</li>
+                        <li>🗺️ Mapeo de "habitantes" vs "conquistadores"</li>
+                        <li>👥 Entrevistas con operarios y técnicos</li>
+                        <li>📍 Identificación de nodos miceliales clave</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                        <strong>Entregable:</strong> Mapa de calor de ruido organizacional
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="phase-badge">DÍAS 31-60</span>
+                    <h3>INTEGRAR</h3>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>🔄 Talleres de combinación entre turnos</li>
+                        <li>📋 Diseño de rituales de paso de turno</li>
+                        <li>🌱 Capacitación de líderes-raíz</li>
+                        <li>🕸️ Creación de embajadores miceliales</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                        <strong>Entregable:</strong> Protocolos de interdependencia
+                    </p>
+                </div>
+            </div>
+            
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="phase-badge">DÍAS 61-90</span>
+                    <h3>ENCARNAR</h3>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li>✨ Implementación de "gestos pequeños"</li>
+                        <li>📈 Medición de segundo índice</li>
+                        <li>🎯 Ajuste fino con feedback</li>
+                        <li>📊 Presentación de resultados a dirección</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                        <strong>Entregable:</strong> Informe de impacto en KPIs
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid" style="margin-top: 4rem;">
+            <div class="card" style="text-align: center; border-top-color: var(--accent-green);">
+                <h3 style="color: var(--accent-green); font-size: 2rem;">↓ 15%</h3>
+                <p>Rotación de personal operativo</p>
+            </div>
+            <div class="card" style="text-align: center; border-top-color: var(--accent-green);">
+                <h3 style="color: var(--accent-green); font-size: 2rem;">↓ 20%</h3>
+                <p>Tiempo muerto entre turnos</p>
+            </div>
+            <div class="card" style="text-align: center; border-top-color: var(--accent-green);">
+                <h3 style="color: var(--accent-green); font-size: 2rem;">↑ 25%</h3>
+                <p>eNPS (Employee Net Promoter Score)</p>
+            </div>
+            <div class="card" style="text-align: center; border-top-color: var(--accent-green);">
+                <h3 style="color: var(--accent-green); font-size: 2rem;">↓ 30%</h3>
+                <p>Conflictos formales entre áreas</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--primary-blue); color: white; text-align: center; padding: 4rem 0;">
+    <div class="container">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿Listo para combinar?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+            No buscamos que la empresa conquiste a sus colaboradores ni que ellos conquisten la empresa. 
+            Buscamos que ambos habiten el mismo espacio productivo.
+        </p>
+        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; display: inline-block;">
+            <h3 style="margin-bottom: 1rem; color: var(--accent-orange);">Contacto</h3>
+            <p style="font-size: 1.1rem;">
+                <strong>Marco Antonio Gálvez Estrada</strong><br>
+                Consultor en Desarrollo Humano | Tejedor de Consciencia<br><br>
+                📧 sintonia.ema.2026@gmail.com<br>
+                📱 55 2268 5235<br>
+                📍 Nicolás Romero, Edo. Méx.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>COMBINAR</h4>
+                <p>Aprende • Crece • Transforma</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">
+                    Antes de actuar, sintoniza.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Metodología</h4>
+                <p style="font-size: 0.9rem;">
+                    Basada en "Habitantes, no Conquistadores" y SINTONÍA EMA. 
+                    Adaptada para entornos de manufactura con enfoque en Asertividad, 
+                    Trabajo en Equipo y Liderazgo.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Ética</h4>
+                <p style="font-size: 0.9rem;">
+                    La Radiografía de Combinación jamás se utiliza como evaluación 
+                    de desempeño individual, filtro disciplinario o métrica de castigo. 
+                    Su valor depende exclusivamente de la confianza del proceso.
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 COMBINAR - Desarrollo Humano Organizacional. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
